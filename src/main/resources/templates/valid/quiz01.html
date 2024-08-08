@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<h3>로그인 유효성 검사</h3>
+	
+<pre>
+아이디, 비밀번호에 대한 서버측 유효성 검사를 진행합니다.
+1. MemberVO를 생성하고 유효성검사 작업을 진행합니다.
+	- 아이디의 정규표현식 [a-zA-Z0-9]{8,}
+	- 비밀번호의 정규표현식은 구글링으로 검색해보세요.
+	
+2. 유효성 검사에 실패하면 quiz화면에 메시지, 사용자가 작성한 데이터를 띄워주면 됩니다.
+
+3. 유효성 검사에 성공하면 quiz01_result페이지로 이동합니다.
+
+3. /valid/quiz01로 진입할 때 에러가 없도록 처리해 주세요.
+</pre>
+	
+	
+	
+	<form action="quizForm" method="post">
+		<input type="text" name="id"  placeholder="아이디는 영문자,숫자 8자 이상입니다" th:value="${vo.id}" >
+		<span th:errors="${vo.id}"></span>
+		<br>
+		<input type="password" name="pw" placeholder="비밀번호 영문자,숫자,특수문자 조합 8글자 이상" >
+		<span th:errors="${vo.pw}"></span>
+		<br>
+		<input type="submit" value="로그인">
+		
+	</form>
+	
+	
+</body>
+</html>

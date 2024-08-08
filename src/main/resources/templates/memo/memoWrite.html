@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+	span {color: red;}
+</style>
+
+</head>
+
+<body>
+	
+<pre>
+CREATE TABLE MEMO(
+	MNO INT PRIMARY KEY AUTO_INCREMENT,
+	MEMO VARCHAR(200) NOT NULL,
+	PHONE VARCHAR(30),
+	PW VARCHAR(4),
+	SECRET CHAR(1) CHECK(SECRET IN ('y', 'n'))
+);
+	</pre>
+	
+	<form action="memoForm" method="post">
+		<h3>메모기능 구현</h3>	
+		<textarea name="memo" rows="5" cols="30" placeholder="내용을 작성해주세요(5글자 이상)">[[${vo.memo}]]</textarea>
+		<span th:errors="${vo.memo}"></span><br>
+		<input type="text" name="phone" placeholder="연락받을 전화번호" th:value="${vo.phone}">
+		<span th:errors="${vo.phone}"></span><br>
+		<input type="password" name="pw" placeholder="비밀번호 숫자 4자리" th:value="${vo.pw}">
+		<span th:errors="${vo.pw}"></span><br>
+		
+		<!-- th:checked값이 true라면 체크처리 -->
+<!--
+		<input type="radio" name="secret" value="n" checked>공개글
+		<input type="radio" name="secret" value="y" >비밀글
+-->
+
+		<input type="radio" name="secret" value="n" th:checked="${vo.secret == 'n'}">공개글
+		<input type="radio" name="secret" value="y" th:checked="${vo.secret == 'y'}">비밀글
+
+
+
+		<input type="submit" value="등록">
+	</form>
+	
+	
+</body>
+</html>

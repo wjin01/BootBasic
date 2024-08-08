@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <!--~{경로 :: 함수( ~{ 내파일:: 선택자} ) }-->
+    <th:block th:replace="~{./include/layout03 :: 함수( ~{ :: .wrap } ) }">
+
+        <div id="wrap">
+            여기는 몸체 입니다. 아이디 선택자 #
+        </div>
+
+        <div class="wrap">
+            여기는 몸체2 입니다. 클래스 선택자 .
+        </div>
+
+    </th:block>
+
+
+
+    <!--이 파일에서만 적용할 js파일은 반드시 block영역 밖에 선언 -->
+    <script>
+        alert(1);
+    </script>
+
+
+
+</html>

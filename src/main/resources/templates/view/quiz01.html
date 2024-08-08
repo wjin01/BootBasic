@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<h3>이 화면에 진입할 때 TestVO를 Model에 담아 화면처리를 합니다.</h3>
+	<p>
+		1. 회원정보확인 링크에는 quiz_result01?키=값 형태로 번호를 넘기고 출력해 주세요
+
+		2. 아래 class="container" 부분만 layout03 템플릿에 전달 될 수 있도록 처리하세요
+	</p>
+
+
+
+	<th:block th:replace="~{/include/layout03 :: 함수( ~{ :: .container } ) }">
+
+	<div class="container">
+		회원번호: [[${vo.num}]]
+		이름: [[${vo.name}]]
+		나이: [[${vo.age}]]
+		<br>
+		<a th:href="@{/view/quiz01_result(num=${vo.num}) }">회원정보확인</a>
+	</div>
+
+	</th:block>
+	
+	
+	
+</body>
+</html>

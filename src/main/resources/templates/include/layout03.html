@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="함수( a )">
+<head>
+    <meta charset="UTF-8">
+    <title>공통 템플릿</title>
+
+</head>
+<body>
+
+    <header>
+        헤더입니다.
+    </header>
+
+    <section>
+        <th:block th:replace="${a}"></th:block>
+    </section>
+
+    <footer>
+        footer입니다
+    </footer>
+
+
+</body>
+</th:block>
+
+</html>

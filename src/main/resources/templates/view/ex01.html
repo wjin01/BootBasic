@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><!--타임리프 선언문(넣어주는편이 좋음)-->
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h3>타임리프 변수, 제어문</h3>
+
+
+    <p th:text="${'hello world'}"></p>
+    <p>[[${'hello world'}]]</p>
+
+    <p th:text="${1 == 1}"></p>
+    <p>[[${1 == 1}]]</p>
+
+
+    <p th:text="${1 eq 1}"></p>
+    <p>[[${1 eq 1}]]</p>
+
+    <h3>변수 선언</h3>
+    <div th:with="a = 10, b = 20">
+        [[${a}]]
+        [[${b}]]
+    </div>
+
+
+    <h3>조건문</h3>
+    <div th:with="a = 10">
+        <span th:if="${a == 10}">10과 같음</span>
+        <span th:if="${a != 10}">10과 같지 않다</span>
+    </div>
+
+
+    <div th:with="a = 10">
+        <span th:if="${a != 10}">if</span>
+        <span th:unless="${a != 10}">if와 조건을 동일하게 달아줍니다 (else문)</span>
+    </div>
+
+
+    <h3>3항 연산자</h3>
+    [[${ true ? '참입니다' : '거짓입니다'}]]
+
+
+
+
+</body>
+</html>

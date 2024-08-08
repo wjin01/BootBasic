@@ -1,0 +1,30 @@
+# 데이터베이스 생성문
+create database spring default charset utf8;
+# 계정생성문
+create user spring identified by 'spring';
+# 권한 부여 (데이터베이스명.* to 계정명)
+grant all privileges on spring.* to spring;
+
+##########################################################
+# 마이에스큐엘 변경점
+# number(10) -> int
+# varchar2(30) -> varchar
+# date -> date or timestamp
+# 테이블명칭이 대소문자를 구분함
+# 시퀀스가 없음 -> auto_increment (값을 1씩 자동증가)
+# 제약조건 같음
+# select, insert, update, delete 같음
+# join 같음
+# 함수는 변경됨
+# 문자열 합치기 || -> concat(문자열, 문자열, 문자열...)
+# 서브쿼리 반드시 테이블 엘리어스를 붙임
+# select *
+# from (select now() ) as 테이블엘리어스;
+#########################################################
+CREATE TABLE MEMO(
+	MNO INT PRIMARY KEY AUTO_INCREMENT,
+	MEMO VARCHAR(200) NOT NULL,
+	PHONE VARCHAR(30),
+	PW VARCHAR(4),
+	SECRET CHAR(1) CHECK(SECRET IN ('y', 'n'))
+);

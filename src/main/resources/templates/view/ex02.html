@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h3>반복문</h3>
+    <!--[[${list}]]-->
+    <ul>
+        <li th:each="vo : ${list}">
+            [[${vo.num}]]
+            [[${vo.name}]]
+            [[${vo.addr}]]
+            [[${vo.age}]]
+        </li>
+    </ul>
+
+    <h3>반복문과 state객체</h3>
+
+    <ul>
+        <li th:each="a, state : ${list}">
+            [[${state}]]<br>
+            [[${state.index}]]<br>
+            [[${state.count}]]<br>
+            [[${state.size}]]<br>
+        </li>
+    </ul>
+
+    <h3>list의 vo의 num가 짝수인 경우만 출력?</h3>
+
+    <ul>
+        <li th:each="a : ${list}" th:if="${a.num % 2 == 0}">
+            [[${a.num}]]
+            [[${a.name}]]
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

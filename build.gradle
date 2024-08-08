@@ -1,0 +1,47 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.18'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.simple'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(11)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' //타임리프 뷰
+	implementation 'org.springframework.boot:spring-boot-starter-web' //부트 web모듈
+	compileOnly 'org.projectlombok:lombok' //롬복
+	developmentOnly 'org.springframework.boot:spring-boot-devtools' //부트 dev모듈
+	annotationProcessor 'org.projectlombok:lombok' //롬복
+	testImplementation 'org.springframework.boot:spring-boot-starter-test' //테스트
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	//jsp를 뷰로 사용하려면
+//	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.83'
+//	implementation 'javax.servlet:jstl:1.2'
+
+	implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.18' //유효성검증
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0' //마이바티스
+	implementation 'com.mysql:mysql-connector-j:8.0.33' //mysql커넥터
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16' //로그모듈
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
