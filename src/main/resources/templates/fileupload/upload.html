@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h3>업로드 예제</h3>
+
+    <h3>단일 파일 업로드(반드시! enctype 선언)</h3>
+    <form action="uploadOk" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit">
+    </form>
+
+    <hr>
+
+    <h3>멀티풀 옵션으로 여러 파일(컨트롤 클릭으로 여러파일이 선택됨)</h3>
+    <form action="uploadOk2" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" multiple>
+        <input type="submit">
+    </form>
+
+    <hr>
+
+    <h3>복수 태그로 여러 파일</h3>
+    <form action="uploadOk3" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="file" name="file">
+        <input type="file" name="file">
+        <input type="file" name="file">
+        <input type="submit">
+    </form>
+
+    <hr>
+
+    <h3>비동기 업로드 방식</h3>
+    <input type="file" name="myFile">
+    <button type="button" id="uploadBtn">비동기 업로드</button>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $("#uploadBtn").click(function() {
+            //1.파일 데이터를 얻음
+            var file = $("input[name=myFile");
+            var data = file[0].files[0];
+            console.dir(file[0]) //제이쿼리ㅏ x번째 키에 저장됨
+            console.log(data); //순수 엘리먼트 files[x] 로 저근하면 파일데이터 구할 수 있음
+
+            //2.폼데이터에 저장
+            var formData = new FormData(); //폼태그
+            formData.append("file", data); //<input name="file" value="">
+            formData.append("writer", "홍길동");
+
+            $({
+                type : "post",
+                url : "uploadOk4",
+                data : formData,
+                contentType : false, //적지 않으면 기본값이 일반 폼데이터 형식, false로 하면 multipart 타입임
+                processData : false, //폼을 자동으로 변수=값 형태로 변경되는 것을 막는 속성
+                success : function(data) {
+                    console.log(data);
+                    //콜백에 대한 처리
+                },
+                error : function(error, status) {
+                    console.log(error);
+                }
+            })
+        })
+
+    </script>
+</body>
+</html>
